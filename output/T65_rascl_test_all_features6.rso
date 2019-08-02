@@ -1,0 +1,36 @@
+
+.segment, 0, 0, .data
+.float, 0, 1, principle
+.float, 0, 1, rate
+.int, 0, 1, period
+.float, 0, 1, payment
+
+.segment, 0, 0, .text
+# Start ASSIGN statement ---
+li, 300000.0, 0, FT0
+sw, FT0, 0, principle
+# Start ASSIGN statement ---
+li, 4.5, 0, FT1
+sw, FT1, 0, rate
+# Start ASSIGN statement ---
+li, 360, 0, T0
+sw, T0, 0, period
+# Start ASSIGN statement ---
+lw, principle, 0, FT2
+li, 1, 0, T1
+lw, rate, 0, FT3
+toFloat, T1, 0, FT4
+fadd, FT4, FT3, FT5
+li, 1, 0, T2
+lw, rate, 0, FT6
+toFloat, T2, 0, FT7
+fadd, FT7, FT6, FT8
+fdiv, FT5, FT8, FT9
+li, 1, 0, T3
+toFloat, T3, 0, FT10
+fsub, FT9, FT10, FT11
+fmul, FT2, FT11, FT12
+sw, FT12, 0, payment
+# Start PRINT statement ---
+lw, payment, 0, T4
+syscall, 2, T4, 0

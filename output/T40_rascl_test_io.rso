@@ -1,0 +1,17 @@
+
+.segment, 0, 0, .data
+.float, 0, 1, a
+.float, 0, 1, b
+
+.segment, 0, 0, .text
+# Start READ statement ---
+syscall, 3, T0, 0
+sw, T0, 0, a
+# Start ASSIGN statement ---
+lw, a, 0, FT0
+li, 2.0, 0, FT1
+fmul, FT0, FT1, FT2
+sw, FT2, 0, b
+# Start PRINT statement ---
+lw, b, 0, T1
+syscall, 2, T1, 0

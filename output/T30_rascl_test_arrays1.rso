@@ -1,0 +1,58 @@
+
+.segment, 0, 0, .data
+.int, 0, 5, a
+.int, 0, 1, b
+.float, 0, 1, c
+.float, 0, 4, d
+
+.segment, 0, 0, .text
+# Start ASSIGN statement ---
+li, 8, 0, T0
+la, a, 0, T1
+add, T0, T1, T2
+li, 5, 0, T3
+sw, T3, 0, T2
+# Start ASSIGN statement ---
+li, 8, 0, T4
+la, a, 0, T5
+add, T4, T5, T6
+lw, T6, 0, T8
+li, 2, 0, T9
+mul, T8, T9, T10
+sw, T10, 0, b
+# Start ASSIGN statement ---
+li, 0, 0, T11
+la, d, 0, T12
+add, T11, T12, T13
+li, 8, 0, T14
+la, a, 0, T15
+add, T14, T15, T16
+lw, T16, 0, T18
+toFloat, T18, 0, FT0
+sw, FT0, 0, T13
+# Start ASSIGN statement ---
+li, 4, 0, T19
+la, d, 0, T20
+add, T19, T20, T21
+li, 0, 0, T22
+la, d, 0, T23
+add, T22, T23, T24
+lw, T24, 0, FT1
+li, 10.5, 0, FT2
+fadd, FT1, FT2, FT3
+sw, FT3, 0, T21
+# Start ASSIGN statement ---
+li, 8, 0, T25
+la, d, 0, T26
+add, T25, T26, T27
+li, 4, 0, T28
+la, d, 0, T29
+add, T28, T29, T30
+lw, T30, 0, FT4
+li, 2, 0, T31
+toFloat, T31, 0, FT5
+fdiv, FT4, FT5, FT6
+sw, FT6, 0, T27
+# Start PRINT statement ---
+lw, b, 0, T32
+syscall, 2, T32, 0

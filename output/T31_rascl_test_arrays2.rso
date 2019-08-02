@@ -1,0 +1,53 @@
+
+.segment, 0, 0, .data
+.int, 0, 5, a
+.int, 0, 1, i
+
+.segment, 0, 0, .text
+# Start WHILE statement ---
+.label, 0, 0, L2
+lw, i, 0, T1
+li, 5, 0, T2
+blt, T1, T2, L1
+j, 0, 0, L0
+.label, 0, 0, L1
+# Start ASSIGN statement ---
+lw, i, 0, T3
+sl, T3, 2, T3
+la, a, 0, T4
+add, T3, T4, T5
+lw, i, 0, T7
+lw, i, 0, T9
+mul, T7, T9, T10
+sw, T10, 0, T5
+# Start ASSIGN statement ---
+lw, i, 0, T12
+li, 1, 0, T13
+add, T12, T13, T14
+sw, T14, 0, i
+j, 0, 0, L2
+.label, 0, 0, L0
+# Start ASSIGN statement ---
+li, 0, 0, T15
+sw, T15, 0, i
+# Start WHILE statement ---
+.label, 0, 0, L5
+lw, i, 0, T17
+li, 5, 0, T18
+blt, T17, T18, L4
+j, 0, 0, L3
+.label, 0, 0, L4
+# Start PRINT statement ---
+lw, i, 0, T19
+sl, T19, 2, T19
+la, a, 0, T20
+add, T19, T20, T21
+lw, T21, 0, T22
+syscall, 2, T22, 0
+# Start ASSIGN statement ---
+lw, i, 0, T24
+li, 1, 0, T25
+add, T24, T25, T26
+sw, T26, 0, i
+j, 0, 0, L5
+.label, 0, 0, L3
